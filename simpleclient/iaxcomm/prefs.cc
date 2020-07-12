@@ -318,7 +318,7 @@ void PrefsDialog::OnBrowse(wxCommandEvent &event)
     wxString dirHome;
     wxGetHomeDir(&dirHome);
 
-    wxFileDialog where(NULL, _("Raw sound file"), dirHome, _T(""), _T("*.*"), wxOPEN );
+    wxFileDialog where(NULL, _("Raw sound file"), dirHome, _T(""), _T("*.*"), wxFD_OPEN );
     where.ShowModal();
 
     if(event.GetId() == XRCID("BrowseRingBack"))

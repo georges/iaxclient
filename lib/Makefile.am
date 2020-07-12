@@ -50,7 +50,7 @@ endif
 
 if MACOSX
 SRCS += $(SRCS_MACOSX)
-AM_LDFLAGS += -framework QuickTime
+AM_LDFLAGS += -framework AVKit
 endif
 
 if VIDEO

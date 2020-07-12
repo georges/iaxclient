@@ -564,7 +564,7 @@ bool MyFrame::GetPTTState()
     KeyMap theKeys;
     GetKeys(theKeys);
     // that's the Control Key (by experimentation!)
-    pressed = theKeys[1] & 0x08;
+    pressed = false; //theKeys[1] & 0x08;
     //fprintf(stderr, "%p %p %p %p\n", theKeys[0], theKeys[1], theKeys[2], theKeys[3]);
   #else
   #ifdef __WXMSW__

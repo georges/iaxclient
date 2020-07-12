@@ -60,7 +60,7 @@ ifeq ($(OSTYPE),LINUX)
  CFLAGS:= $(CFLAGS) `sdl-config --cflags`
 endif
 ifeq ($(OSTYPE),MACOSX)
- LIBS:= $(LIBS) -framework QuickTime -framework Carbon -framework AudioUnit ../../lib/libtheora/lib/.libs/libtheora.a -logg -L/sw/lib  `sdl-config --libs`
+ LIBS:= $(LIBS) -framework AVKit -framework Carbon -framework AudioUnit ../../lib/libtheora/lib/.libs/libtheora.a -logg -L/sw/lib  `sdl-config --libs`
  CFLAGS:= $(CFLAGS) `sdl-config --cflags`
 endif
 

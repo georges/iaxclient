@@ -141,12 +141,12 @@ void DevicesDialog::GetAudioDevices()
     // validated).  Invalid input to SetAudioDevices selects defaults
 
     devname = wxGetApp().SpkInputDevice;
-    if(devname) {
+    if(!devname.IsEmpty()) {
         SpkInputDevice->SetSelection(SpkInputDevice->FindString(devname));
     }
 
     devname = wxGetApp().SpkOutputDevice;
-    if(devname) {
+    if(!devname.IsEmpty()) {
         SpkOutputDevice->SetSelection(SpkOutputDevice->FindString(devname));
     }
 

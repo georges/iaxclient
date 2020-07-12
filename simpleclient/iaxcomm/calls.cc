@@ -274,7 +274,7 @@ int CallList::HandleStateEvent(struct iaxc_ev_call_state c)
                 if(!str.IsSameAs(ws)) {
                     // Add to phone book if not there already
                     str.Printf(_T("%s/Extension"), wxString(c.remote_name, *(wxGetApp().ConvIax)).c_str());
-                    config->Write(str, c.remote);
+                    config->Write(str, wxString(c.remote));
                 } else {
                     // Since they're in the phone book, look for ringtone
                     str.Printf(_T("%s/RingTone"), wxString(c.remote_name, *(wxGetApp().ConvIax)).c_str());
