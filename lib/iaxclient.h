@@ -178,7 +178,7 @@ typedef int socklen_t;
 /*!
 	The maximum size of a string contained within an event
  */
-#define IAXC_EVENT_BUFSIZ 256
+#define IAXC_EVENT_BUFSIZ 5120
 
 /*!
 	A structure containing information about an audio level event.

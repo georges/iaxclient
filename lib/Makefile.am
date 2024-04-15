@@ -49,8 +49,8 @@ SRCS += $(SRCS_LINUX)
 endif
 
 if MACOSX
-SRCS += $(SRCS_MACOSX)
-AM_LDFLAGS += -framework QuickTime
+#SRCS += $(SRCS_MACOSX)
+#AM_LDFLAGS += -framework QuickTime
 endif
 
 if VIDEO
