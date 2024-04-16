@@ -1,11 +1,11 @@
 dnl Copyright (C) 2004-2005  Mikael Magnusson <mikma@users.sourceforge.net>
 
-AC_PREREQ(2.59)
+AC_PREREQ([2.72])
 
 dnl Package version
 m4_define(IAXC_VERSION, [2.x-trunk])
 
-AC_INIT(iaxclient, IAXC_VERSION, [iaxclient-devel@lists.sourceforge.net])
+AC_INIT([iaxclient],[IAXC_VERSION],[iaxclient-devel@lists.sourceforge.net])
 
 AC_CONFIG_SRCDIR([lib/iaxclient.h])
 AC_CONFIG_HEADERS([config.h])
@@ -24,19 +24,19 @@ AC_SUBST(IAXC_LT_AGE)
 
 AC_CANONICAL_HOST
 
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 
 AC_PROG_CC
 AM_PROG_CC_C_O
-AC_PROG_GCC_TRADITIONAL
 AC_PROG_CXX
 AC_PROG_INSTALL
-AC_LIBTOOL_WIN32_DLL
-AC_PROG_LIBTOOL
+LT_INIT
+AM_PROG_AR
 
-AC_HEADER_STDC
+
 AC_HEADER_STDBOOL
-AC_HEADER_TIME
+
+
 AC_CHECK_HEADERS([sys/time.h varargs.h sys/socket.h])
 
 AC_C_CONST
@@ -194,8 +194,8 @@ PKG_CHECK_MODULES(ALSA, [alsa >= 1.0], has_alsa=yes, has_alsa=no)
 PKG_CHECK_MODULES(OGG, [ogg >= 1.1.3], has_ogg=yes, has_ogg=no)
 PKG_CHECK_MODULES(OGGZ, [oggz >= 0.9.5], has_oggz=yes, has_oggz=no)
 PKG_CHECK_MODULES(THEORA, [theora >= 1.0alpha7], has_theora=yes, has_theora=no)
-PKG_CHECK_MODULES(VIDCAP, [vidcap >= 0.1], has_vidcap=yes, has_vidcap=no)
-PKG_CHECK_MODULES(FFMPEG, [libavcodec >= 51.40.3], has_ffmpeg=yes, has_ffmpeg=no)
+# PKG_CHECK_MODULES(VIDCAP, [vidcap >= 0.1], has_vidcap=yes, has_vidcap=no)
+# PKG_CHECK_MODULES(FFMPEG, [libavcodec >= 51.40.3], has_ffmpeg=yes, has_ffmpeg=no)
 
 has_gsm=no
 if test x$enable_local_gsm = xyes; then
@@ -466,18 +466,7 @@ AC_SUBST(CLIENTS)
 AC_SUBST(PACKAGE_REQUIRES)
 
 AC_CONFIG_FILES([
-      Makefile
       lib/Makefile
-      simpleclient/Makefile
-      iaxclient.pc
-      simpleclient/testcall/Makefile
-      simpleclient/stresstest/Makefile
-      simpleclient/vtestcall/Makefile
-      simpleclient/iaxcomm/Makefile
-      simpleclient/iaxphone/Makefile
-      simpleclient/tkphone/Makefile
-      simpleclient/WinIAX/Makefile
-      simpleclient/wx/Makefile
 ])
 
 AC_OUTPUT
