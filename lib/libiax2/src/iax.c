@@ -225,6 +225,9 @@ struct iax_session {
 
 	/* For linking if there are multiple connections */
 	struct iax_session *next;
+
+	/* Remember the initial call params to re-invoke the method once we get token */
+	struct iax_ie_data ied;
 };
 
 char iax_errstr[256];
@@ -2177,6 +2180,9 @@ int iax_call(struct iax_session *session, const char *cidnum, const char *cidnam
 		dnid = NULL;
 		context = NULL;
 	}
+
+	
+
 	if (username)
 		iax_ie_append_str(&ied, IAX_IE_USERNAME, username);
 	if (exten && strlen(exten))
@@ -2185,6 +2191,7 @@ int iax_call(struct iax_session *session, const char *cidnum, const char *cidnam
 		iax_ie_append_str(&ied, IAX_IE_DNID, dnid);
 	if (context && strlen(context))
 		iax_ie_append_str(&ied, IAX_IE_CALLED_CONTEXT, context);
+
 
 	/* Setup host connection */
 	hp = gethostbyname(hostname);
@@ -2195,6 +2202,12 @@ int iax_call(struct iax_session *session, const char *cidnum, const char *cidnam
 	memcpy(&session->peeraddr.sin_addr, hp->h_addr, sizeof(session->peeraddr.sin_addr));
 	session->peeraddr.sin_port = htons(portno);
 	session->peeraddr.sin_family = AF_INET;
+
+	// clone the ied to the session ied member
+	memcpy(&session->ied, &ied, ied.pos);
+	session->ied.pos = ied.pos;
+	iax_ie_append(&ied, IAX_IE_CALLTOKEN);
+
 	res = send_command(session, AST_FRAME_IAX, IAX_COMMAND_NEW, 0, ied.buf, ied.pos);
 	if (res < 0)
 		return res;
@@ -2862,6 +2875,29 @@ static struct iax_event *iax_header_to_event(struct iax_session *session, struct
 				free(e);
 				e = NULL;
 			}
+			break;
+		case IAX_COMMAND_CALLTOKEN:
+			/* Call token */
+			if (e->ies.calltoken && e->ies.calltoken_len > 0)
+			{
+				// Add token to the ied field
+				iax_ie_append_raw(&session->ied, IAX_IE_CALLTOKEN, e->ies.calltoken, e->ies.calltoken_len);
+				// Reset sequence numbers as we're supposed to re-send the first frame
+				session->aseqno = 0;
+				session->oseqno = 0;
+				session->iseqno = 0;
+				session->peercallno = 0;
+				iax_send(session, AST_FRAME_IAX, IAX_COMMAND_NEW, session->ied.buf, session->ied.pos, 0,
+					-1, /* seqno */
+					1, /* immediate */
+					0, /* transfer */
+					0, /* final */
+					0, /* fullframe */ 
+					0  /* samples */				
+				);
+			}
+			free(e);
+			e = NULL;
 			break;
 		default:
 			DEBU(G "Don't know what to do with IAX command %d\n", subclass);

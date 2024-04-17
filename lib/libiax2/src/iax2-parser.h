@@ -64,6 +64,8 @@ struct iax_ies {
 	unsigned short rr_delay;
 	unsigned int rr_dropped;
 	unsigned int rr_ooo;
+	char *calltoken;
+	int calltoken_len;
 };
 
 struct iax_frame {

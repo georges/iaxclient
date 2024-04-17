@@ -749,6 +749,10 @@ int iax_parse_ies(struct iax_ies *ies, unsigned char *data, int datalen)
 				ies->rr_ooo = ntohl(get_uint32(data + 2));
 			}
 			break;
+		case IAX_IE_CALLTOKEN:
+			ies->calltoken = data + 2;
+			ies->calltoken_len = len;
+			break;
 		default:
 			snprintf(tmp, (int)sizeof(tmp), "Ignoring unknown information element '%s' (%d) of length %d\n", iax_ie2str(ie), ie, len);
 			outputf(tmp);
