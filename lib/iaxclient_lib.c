@@ -1994,7 +1994,7 @@ EXPORT char* iaxc_version(char * ver)
 #ifndef LIBVER
 #define LIBVER ""
 #endif
-	strncpy(ver, LIBVER, IAXC_EVENT_BUFSIZ);
+	strncpy(ver, LIBVER, 256);
 	return ver;
 }
 

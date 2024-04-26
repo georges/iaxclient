@@ -104,7 +104,7 @@
 #define PACKAGE_NAME "iaxclient"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "iaxclient 2.x-trunk"
+#define PACKAGE_STRING "iaxclient 2.2.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "iaxclient"
@@ -113,7 +113,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.x-trunk"
+#define PACKAGE_VERSION "2.2.0"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
@@ -238,7 +238,7 @@
 /* #undef USE_VIDEO */
 
 /* Version number of package */
-#define VERSION "2.x-trunk"
+#define VERSION "2.2.0"
 
 /* mingw or cygwin */
 /* #undef WIN32 */
