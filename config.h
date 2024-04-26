@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 to enable GSM support */
-#define CODEC_GSM /**/
+/* #undef CODEC_GSM */
 
 /* Define to 1 to enable ILBC support */
 /* #undef CODEC_ILBC */
