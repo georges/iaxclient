@@ -102,14 +102,14 @@ am__append_9 = $(SRCS_IAX2)
 #am__append_10 = -DDEBUG_SUPPORT 
 #am__append_11 = codec_ilbc.c
 #am__append_12 = $(SRCS_ILBC)
-am__append_13 = codec_gsm.c codec_gsm.h
-am__append_14 = $(GSM_LIBS)
-am__append_15 = $(GSM_CFLAGS)
-am__append_16 = $(OGG_LIBS)
-am__append_17 = $(OGG_CFLAGS)
-am__append_18 = codec_theora.c codec_theora.h
-am__append_19 = $(THEORA_LIBS)
-am__append_20 = $(THEORA_CFLAGS)
+#am__append_13 = codec_gsm.c codec_gsm.h
+#am__append_14 = $(GSM_LIBS)
+#am__append_15 = $(GSM_CFLAGS)
+#am__append_16 = $(OGG_LIBS)
+#am__append_17 = $(OGG_CFLAGS)
+#am__append_18 = codec_theora.c codec_theora.h
+#am__append_19 = $(THEORA_LIBS)
+#am__append_20 = $(THEORA_CFLAGS)
 #am__append_21 = codec_ffmpeg.c codec_ffmpeg.h
 #am__append_22 = $(FFMPEG_LIBS)
 #am__append_23 = $(FFMPEG_CFLAGS)
@@ -159,9 +159,9 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
-am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
+#am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+#am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
+#am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
 libiaxclient_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -213,8 +213,8 @@ am__objects_11 = libiax2/src/md5.lo libiax2/src/iax.lo \
 	libiax2/src/iax2-parser.lo libiax2/src/jitterbuf.lo
 am__objects_12 = $(am__objects_11)
 #am__objects_13 = codec_ilbc.lo
-am__objects_14 = codec_gsm.lo
-am__objects_15 = codec_theora.lo
+#am__objects_14 = codec_gsm.lo
+#am__objects_15 = codec_theora.lo
 #am__objects_16 = codec_ffmpeg.lo
 am__objects_17 = $(am__objects_2) $(am__objects_4) $(am__objects_6) \
 	$(am__objects_8) $(am__objects_10) $(am__objects_12) \
@@ -354,8 +354,8 @@ AUTOMAKE = ${SHELL} '/Users/gauberger/dev/islandmagic/iaxclient/missing' automak
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
-CLIENTS =  testcall tkphone
+CFLAGS = -isysroot /Applications/Xcode-15.3.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -mmacosx-version-min=11.0
+CLIENTS = 
 CPPFLAGS = 
 CSCOPE = cscope
 CTAGS = ctags
@@ -381,7 +381,7 @@ GDK2_CFLAGS = -I/usr/local/Cellar/gtk+/2.24.33_2/include/gtk-2.0 -I/usr/local/Ce
 GDK2_LIBS = -L/usr/local/Cellar/gtk+/2.24.33_2/lib -L/usr/local/Cellar/pango/1.52.2/lib -L/usr/local/Cellar/harfbuzz/8.4.0/lib -L/usr/local/Cellar/glib/2.80.0_2/lib -L/usr/local/Cellar/gdk-pixbuf/2.42.10_1/lib -L/usr/local/Cellar/glib/2.80.0_2/lib -L/usr/local/opt/gettext/lib -L/usr/local/Cellar/cairo/1.18.0/lib -lgdk-quartz-2.0 -framework Cocoa -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -lgio-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 -lintl -framework CoreFoundation -framework ApplicationServices -lcairo
 GREP = /usr/bin/grep
 GSM_CFLAGS = 
-GSM_LIBS =  -lgsm
+GSM_LIBS = 
 GTK_CFLAGS = -I/usr/local/Cellar/gtk+/2.24.33_2/include/gtk-2.0 -I/usr/local/Cellar/gtk+/2.24.33_2/lib/gtk-2.0/include -I/usr/local/Cellar/pango/1.52.2/include/pango-1.0 -I/usr/local/Cellar/harfbuzz/8.4.0/include/harfbuzz -I/usr/local/Cellar/pango/1.52.2/include/pango-1.0 -I/usr/local/Cellar/fribidi/1.0.13/include/fribidi -I/usr/local/Cellar/harfbuzz/8.4.0/include/harfbuzz -I/usr/local/Cellar/graphite2/1.3.14/include -I/usr/local/Cellar/cairo/1.18.0/include -I/usr/local/Cellar/at-spi2-core/2.52.0/include/atk-1.0 -I/usr/local/Cellar/cairo/1.18.0/include/cairo -I/usr/local/Cellar/fontconfig/2.15.0/include -I/usr/local/opt/freetype/include/freetype2 -I/usr/local/Cellar/libxext/1.3.6/include -I/usr/local/Cellar/libxrender/0.9.11/include -I/usr/local/Cellar/libx11/1.8.9/include -I/usr/local/Cellar/libxcb/1.16.1/include -I/usr/local/Cellar/libxau/1.0.11/include -I/usr/local/Cellar/libxdmcp/1.1.5/include -I/usr/local/Cellar/pixman/0.42.2/include/pixman-1 -I/usr/local/Cellar/gdk-pixbuf/2.42.10_1/include/gdk-pixbuf-2.0 -I/usr/local/opt/libpng/include/libpng16 -I/usr/local/Cellar/libtiff/4.6.0/include -I/usr/local/opt/zstd/include -I/usr/local/Cellar/xz/5.4.6/include -I/usr/local/Cellar/jpeg-turbo/3.0.2/include -I/usr/local/Cellar/glib/2.80.0_2/include -I/usr/local/Cellar/glib/2.80.0_2/include/glib-2.0 -I/usr/local/Cellar/glib/2.80.0_2/lib/glib-2.0/include -I/usr/local/opt/gettext/include -I/usr/local/Cellar/pcre2/10.43/include -I/usr/local/Cellar/xorgproto/2024.1/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/ffi
 GTK_LIBS = -L/usr/local/Cellar/gtk+/2.24.33_2/lib -L/usr/local/Cellar/pango/1.52.2/lib -L/usr/local/Cellar/harfbuzz/8.4.0/lib -L/usr/local/Cellar/at-spi2-core/2.52.0/lib -L/usr/local/Cellar/cairo/1.18.0/lib -L/usr/local/Cellar/gdk-pixbuf/2.42.10_1/lib -L/usr/local/Cellar/glib/2.80.0_2/lib -L/usr/local/opt/gettext/lib -lgtk-quartz-2.0 -lgdk-quartz-2.0 -framework Cocoa -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -framework CoreFoundation -framework ApplicationServices -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0 -lintl
 IAX2_CFLAGS = -I$(top_srcdir)/lib/libiax2/src -DLIBIAX

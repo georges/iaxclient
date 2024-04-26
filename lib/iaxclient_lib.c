@@ -945,6 +945,15 @@ static int service_audio()
 	return 0;
 }
 
+EXPORT void iaxc_restart_audio_driver()
+{
+	if (selected_call >= 0)
+	{
+		// The audio loop should restart itself
+		audio_driver.stop(&audio_driver);
+	}
+}
+
 /* handle IAX text events */
 static void handle_text_event(struct iax_event *e, int callNo)
 {
@@ -1879,9 +1888,9 @@ EXPORT int iaxc_audio_devices_get(struct iaxc_audio_device **devs, int *nDevs,
 	if ( test_mode )
 		return 0;
 
+	audio_driver.selected_devices(&audio_driver, input, output, ring);
 	*devs = audio_driver.devices;
 	*nDevs = audio_driver.nDevices;
-	audio_driver.selected_devices(&audio_driver, input, output, ring);
 	return 0;
 }
 

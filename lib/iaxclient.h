@@ -1388,6 +1388,9 @@ EXPORT int iaxc_push_video(void *data, unsigned int size, int fragment);
 */
 EXPORT void iaxc_debug_iax_set(int enable);
 
+
+EXPORT void iaxc_restart_audio_driver();
+
 #ifdef __cplusplus
 }
 #endif
