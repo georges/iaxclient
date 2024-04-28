@@ -1,5 +1,9 @@
 ./autogen.sh
-MACOSX=1 ./configure --enable-video=no --without-vidcap
+export CFLAGS="-isysroot $(xcrun --sdk macosx14.4 --show-sdk-path) -mmacosx-version-min=11.0 -g"
+export MACOSX_DEPLOYMENT_TARGET=11.0
+MACOSX=1 ./configure --without-ogg --without-theora --without-vidcap \
+    --disable-video --disable-clients
 cd lib
 make clean
 make
+make install

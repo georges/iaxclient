@@ -67,6 +67,7 @@
 #define IAX_COMMAND_PROVISION	35	/* Provision device */
 #define IAX_COMMAND_FWDOWNL    36      /* Download firmware */
 #define IAX_COMMAND_FWDATA     37      /* Firmware Data */
+#define IAX_COMMAND_CALLTOKEN 	40
 
 #define IAX_DEFAULT_REG_EXPIRE  60	/* By default require re-registration once per minute */
 
@@ -128,7 +129,7 @@
 #define IAX_IE_RR_DROPPED                       50              /* Dropped frames (presumably by jitterbuf) u32 */
 #define IAX_IE_RR_OOO                           51              /* Frames received Out of Order u32 */
 
-
+#define IAX_IE_CALLTOKEN												54
 
 #define IAX_AUTH_PLAINTEXT			(1 << 0)
 #define IAX_AUTH_MD5				(1 << 1)

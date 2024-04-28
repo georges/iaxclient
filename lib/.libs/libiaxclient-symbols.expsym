@@ -33,6 +33,7 @@ _iaxc_register
 _iaxc_register_ex
 _iaxc_reject_call
 _iaxc_reject_call_number
+_iaxc_restart_audio_driver
 _iaxc_select_call
 _iaxc_selected_call
 _iaxc_send_busy_on_incoming_call

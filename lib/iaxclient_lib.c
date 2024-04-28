@@ -133,6 +133,8 @@ static iaxc_event_callback_t iaxc_event_callback = NULL;
 // lock is released.
 static iaxc_event *event_queue = NULL;
 
+int audio_devices_changed = 0;
+
 // Lock the library
 static void get_iaxc_lock()
 {
@@ -808,6 +810,14 @@ static THREADFUNCDECL(main_proc_thread_func)
 							"cannot open audio device"
 							" after several tries");
 			}
+
+			if (audio_devices_changed)
+			{
+				audio_devices_changed = 0;
+				iaxci_usermsg(IAXC_NOTICE,
+						"audio device changed, restarting audio driver");				
+				audio_driver.stop(&audio_driver);
+			}
 		}
 
 		// Check registration refresh once a second
@@ -945,6 +955,14 @@ static int service_audio()
 	return 0;
 }
 
+EXPORT void iaxc_restart_audio_driver()
+{
+	if (selected_call >= 0)
+	{
+		audio_devices_changed = 1;
+	}
+}
+
 /* handle IAX text events */
 static void handle_text_event(struct iax_event *e, int callNo)
 {
@@ -1053,7 +1071,10 @@ static void handle_audio_event(struct iax_event *e, int callNo)
 #endif
 	struct iaxc_call *call;
 
-	/* drop audio for unselected call? */
+	/* 
+		drop audio for unselected call
+		otherwise we need to mix the audio from all calls
+	*/
 	if ( callNo < 0 || callNo != selected_call )
 		return;
 
@@ -1879,9 +1900,9 @@ EXPORT int iaxc_audio_devices_get(struct iaxc_audio_device **devs, int *nDevs,
 	if ( test_mode )
 		return 0;
 
+	audio_driver.selected_devices(&audio_driver, input, output, ring);
 	*devs = audio_driver.devices;
 	*nDevs = audio_driver.nDevices;
-	audio_driver.selected_devices(&audio_driver, input, output, ring);
 	return 0;
 }
 
@@ -1985,7 +2006,7 @@ EXPORT char* iaxc_version(char * ver)
 #ifndef LIBVER
 #define LIBVER ""
 #endif
-	strncpy(ver, LIBVER, IAXC_EVENT_BUFSIZ);
+	strncpy(ver, LIBVER, 256);
 	return ver;
 }
 

@@ -3,7 +3,7 @@ dnl Copyright (C) 2004-2005  Mikael Magnusson <mikma@users.sourceforge.net>
 AC_PREREQ([2.72])
 
 dnl Package version
-m4_define(IAXC_VERSION, [2.x-trunk])
+m4_define(IAXC_VERSION, [2.2.0])
 
 AC_INIT([iaxclient],[IAXC_VERSION],[iaxclient-devel@lists.sourceforge.net])
 

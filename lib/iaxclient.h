@@ -178,7 +178,7 @@ typedef int socklen_t;
 /*!
 	The maximum size of a string contained within an event
  */
-#define IAXC_EVENT_BUFSIZ 5120
+#define IAXC_EVENT_BUFSIZ 2048
 
 /*!
 	A structure containing information about an audio level event.
@@ -1387,6 +1387,9 @@ EXPORT int iaxc_push_video(void *data, unsigned int size, int fragment);
 	\param enable If non-zero enable iax protocol debugging
 */
 EXPORT void iaxc_debug_iax_set(int enable);
+
+
+EXPORT void iaxc_restart_audio_driver();
 
 #ifdef __cplusplus
 }
