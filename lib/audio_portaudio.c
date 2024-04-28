@@ -543,8 +543,12 @@ static int pa_open(int single, int inMono, int outMono)
 
 		if (err != paNoError)
 		{
-			Pa_CloseStream(iStream);
-			iStream = NULL;
+			if (iStream)
+			{
+				Pa_CloseStream(iStream);
+			}
+			// 4/27/2024 GAR: Not sure why this is nulled
+			//iStream = NULL;
 			return -1;
 		}
 		oneStream = 0;
@@ -762,19 +766,28 @@ static int pa_stop(struct iaxc_audio_driver *d)
 	if (sounds)
 		return 0;
 
-	err = Pa_AbortStream(oStream);
-	err = Pa_CloseStream(oStream);
+	if (oStream)
+	{
+		err = Pa_AbortStream(oStream);
+		err = Pa_CloseStream(oStream);
+	}
 
 	if (!oneStream)
 	{
-		err = Pa_AbortStream(iStream);
-		err = Pa_CloseStream(iStream);
+		if (iStream)
+		{
+			err = Pa_AbortStream(iStream);
+			err = Pa_CloseStream(iStream);
+		}
 	}
 
 	if (auxStream)
 	{
-		err = Pa_AbortStream(aStream);
-		err = Pa_CloseStream(aStream);
+		if (aStream)
+		{
+			err = Pa_AbortStream(aStream);
+			err = Pa_CloseStream(aStream);
+		}
 	}
 
 	running = 0;
@@ -876,9 +889,9 @@ static int pa_selected_devices(struct iaxc_audio_driver *d, int *input,
 	}
 	scan_devices(d);
 
-	*input = selectedInput = Pa_GetDefaultInputDevice();
-	*output = selectedOutput = Pa_GetDefaultOutputDevice();
-	*ring = selectedRing = selectedOutput;
+	*input = Pa_GetDefaultInputDevice();
+	*output = Pa_GetDefaultOutputDevice();
+	*ring = *output;
 
 	return 0;
 }

@@ -354,7 +354,7 @@ AUTOMAKE = ${SHELL} '/Users/gauberger/dev/islandmagic/iaxclient/missing' automak
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -isysroot /Applications/Xcode-15.3.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -mmacosx-version-min=11.0
+CFLAGS = -isysroot /Applications/Xcode-15.3.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk -mmacosx-version-min=11.0 -g
 CLIENTS = 
 CPPFLAGS = 
 CSCOPE = cscope

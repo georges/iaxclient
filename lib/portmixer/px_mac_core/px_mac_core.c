@@ -83,9 +83,6 @@ const char *Px_GetMixerName( void *pa_stream, int index )
 PxMixer *Px_OpenMixer( void *pa_stream, int index )
 {
    PxInfo                      *info;
-   OSStatus err;
-   UInt32   outSize;
-   int      i;
 
    os_log = os_log_create("co.islandmagic.iaxclient", "PortMixer");
 
